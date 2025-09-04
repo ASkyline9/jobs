@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Most Wanted Full-Time & Part-Time Jobs in Malaysia</title>
+    <meta name="description" content="Find the most wanted full-time and part-time job listings in Malaysia, curated daily for job seekers. Explore opportunities from various industries.">
+    <meta name="keywords" content="jobs in Malaysia, full-time jobs, part-time jobs, Malaysia job listings, job search, career opportunities, GrabJobs, Skyline Hub">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .container {
+            max-width: 1024px;
+            margin: auto;
+            padding: 1.5rem;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container min-h-screen flex flex-col items-center pt-8 pb-16">
+        <!-- Header Section -->
+        <header class="text-center mb-12 w-full">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight">Most Wanted Jobs in Malaysia</h1>
+            <p class="mt-2 text-lg text-gray-600">Daily curated job listings for you.</p>
+        </header>
+
+        <!-- Full Time Jobs Section -->
+        <section class="w-full mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Full Time Jobs</h2>
+            <div id="full-time-listings" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Full-time job cards will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <!-- Part Time Jobs Section -->
+        <section class="w-full mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Part Time Jobs</h2>
+            <div id="part-time-listings" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Part-time job cards will be dynamically inserted here -->
+            </div>
+        </section>
+
+        <!-- Affiliate Ads -->
+        <div class="w-full flex flex-col sm:flex-row justify-center items-center my-8 space-y-4 sm:space-y-0 sm:space-x-4">
+            <div class="w-full sm:w-1/2 p-4 bg-gray-200 border border-gray-300 rounded-lg text-center">
+                <a href="https://c.lazada.com.my/t/c.d5OOIo?sub_id1=https%3A%2F%2Fc.lazada.com.my%2Ft%2Fc.d5l7dw&sub_aff_id=227380548" target="_blank" class="block py-4 text-gray-800 font-semibold text-lg hover:text-blue-600 transition-colors">
+                    Click to shop on Lazada!
+                </a>
+            </div>
+            <div class="w-full sm:w-1/2 p-4 bg-gray-200 border border-gray-300 rounded-lg text-center">
+                <a href="https://s.shopee.com.my/AA7VOpWmv3" target="_blank" class="block py-4 text-gray-800 font-semibold text-lg hover:text-blue-600 transition-colors">
+                    Click to shop on Shopee!
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer Section -->
+        <footer class="text-center mt-12 w-full text-gray-500">
+            <p>&copy; 2025 <a href="https://askyline9.github.io" class="text-blue-500 hover:underline">Skyline Hub</a> . All Rights Reserved.</p>
+            <p>
+                <a href="https://askyline9.github.io" class="text-blue-500 hover:underline">Skyline Hub</a>
+            </p>
+            <p>
+                Email: <a href="mailto:aa.skyline99@gmail.com" class="text-blue-500 hover:underline">aa.skyline99@gmail.com</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Due to browser security policies (CORS), we cannot directly scrape data from external websites
+        // with client-side JavaScript. For a real-world application, you would need to use a
+        // server-side proxy or an API to fetch the job data.
+        // This script simulates the process by generating placeholder data.
+
+        const jobData = {
+            "full_time": [{
+                title: "Software Engineer",
+                company: "Tech Solutions Inc.",
+                description: "Develop and maintain web applications using modern frameworks.",
+                url: "https://grabjobs.co/malaysia/jobs-in-malaysia"
+            }, {
+                title: "Marketing Executive",
+                company: "Creative Marketing Co.",
+                description: "Plan and execute digital marketing campaigns to drive growth.",
+                url: "https://grabjobs.co/malaysia/jobs-in-malaysia"
+            }, {
+                title: "Data Analyst",
+                company: "Data Insights Sdn. Bhd.",
+                description: "Analyze large datasets to provide actionable business insights.",
+                url: "https://grabjobs.co/malaysia/jobs-in-malaysia"
+            }],
+            "part_time": [{
+                title: "Customer Service Agent",
+                company: "Remote Support Group",
+                description: "Handle customer inquiries and provide support via chat and email.",
+                url: "https://grabjobs.co/malaysia/part-time-jobs"
+            }, {
+                title: "Online Tutor",
+                company: "E-Learning Hub",
+                description: "Teach subjects like Mathematics and Science to students online.",
+                url: "https://grabjobs.co/malaysia/part-time-jobs"
+            }, {
+                title: "Content Writer",
+                company: "Freelance Content Solutions",
+                description: "Write articles and blog posts on various topics for clients.",
+                url: "https://grabjobs.co/malaysia/part-time-jobs"
+            }]
+        };
+
+        function createJobCard(job) {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <h2 class="text-xl font-bold text-gray-800 mb-2">${job.title}</h2>
+                <p class="text-gray-600 text-sm mb-4">${job.company}</p>
+                <p class="text-gray-700 leading-relaxed">${job.description}</p>
+                <a href="${job.url}" target="_blank" class="mt-4 inline-block px-6 py-2 bg-blue-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 transition-colors">
+                    Apply Now
+                </a>
+            `;
+            return card;
+        }
+
+        async function fetchAndDisplayJobs() {
+            // Simulate an API call
+            console.log('Fetching job listings...');
+            
+            const fullTimeContainer = document.getElementById('full-time-listings');
+            const partTimeContainer = document.getElementById('part-time-listings');
+
+            // Clear existing placeholders
+            fullTimeContainer.innerHTML = '';
+            partTimeContainer.innerHTML = '';
+
+            // Display full-time jobs
+            jobData.full_time.forEach(job => {
+                fullTimeContainer.appendChild(createJobCard(job));
+            });
+
+            // Display part-time jobs
+            jobData.part_time.forEach(job => {
+                partTimeContainer.appendChild(createJobCard(job));
+            });
+            console.log('Job listings displayed.');
+        }
+
+        window.onload = function() {
+            fetchAndDisplayJobs();
+        };
+    </script>
+</body>
+</html>
