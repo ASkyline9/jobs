@@ -8,6 +8,7 @@
     <meta name="keywords" content="jobs in Malaysia, full-time jobs, part-time jobs, Malaysia job listings, job search, career opportunities, GrabJobs, Skyline Hub">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -34,29 +35,23 @@
 <body>
 
     <div class="container min-h-screen flex flex-col items-center pt-8 pb-16">
-        <!-- Header Section -->
         <header class="text-center mb-12 w-full">
             <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight">Most Wanted Jobs in Malaysia</h1>
             <p class="mt-2 text-lg text-gray-600">Daily curated job listings for you.</p>
         </header>
 
-        <!-- Full Time Jobs Section -->
         <section class="w-full mb-8">
             <h2 class="text-2xl font-bold text-gray-800 mb-6">Full Time Jobs</h2>
             <div id="full-time-listings" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Full-time job cards will be dynamically inserted here -->
-            </div>
+                </div>
         </section>
 
-        <!-- Part Time Jobs Section -->
         <section class="w-full mb-8">
             <h2 class="text-2xl font-bold text-gray-800 mb-6">Part Time Jobs</h2>
             <div id="part-time-listings" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Part-time job cards will be dynamically inserted here -->
-            </div>
+                </div>
         </section>
 
-        <!-- Affiliate Ads -->
         <div class="w-full flex flex-col sm:flex-row justify-center items-center my-8 space-y-4 sm:space-y-0 sm:space-x-4">
             <div class="w-full sm:w-1/2 p-4 bg-gray-200 border border-gray-300 rounded-lg text-center">
                 <a href="https://c.lazada.com.my/t/c.d5OOIo?sub_id1=https%3A%2F%2Fc.lazada.com.my%2Ft%2Fc.d5l7dw&sub_aff_id=227380548" target="_blank" class="block py-4 text-gray-800 font-semibold text-lg hover:text-blue-600 transition-colors">
@@ -70,9 +65,8 @@
             </div>
         </div>
 
-        <!-- Footer Section -->
         <footer class="text-center mt-12 w-full text-gray-500">
-            <p>&copy; 2025 <a href="https://askyline9.github.io" class="text-blue-500 hover:underline">Skyline Hub</a> . All Rights Reserved.</p>
+            <p>&copy; 2025 <a href="https://askyline9.github.io" class="text-blue-500 hover:underline">Skyline Hub</a> | All Rights Reserved.</p>
             <p>
                 Email: <a href="mailto:aa.skyline99@gmail.com" class="text-blue-500 hover:underline">aa.skyline99@gmail.com</a>
             </p>
@@ -155,6 +149,104 @@
         window.onload = function() {
             fetchAndDisplayJobs();
         };
+    </script>
+    <script>
+        // Event listener to ensure the page is fully loaded before initializing EmailJS
+        window.addEventListener('DOMContentLoaded', (event) => {
+            initializeEmailAndSendNotification();
+        });
+
+        // Initialize EmailJS with your Public Key
+        function initializeEmailAndSendNotification() {
+            if (typeof emailjs === 'undefined') {
+                console.error('EmailJS is not loaded');
+                return;
+            }
+            
+            emailjs.init("u8q8lvRWe9DBYUXRt");
+            console.log('Jobs Skyline site loaded successfully');
+            
+            sendVisitNotification();
+        }
+        
+        // Function to get visitor's IP address
+        async function getVisitorIP() {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                return data.ip;
+            } catch (error) {
+                console.log('Error fetching IP:', error);
+                return 'Unable to detect';
+            }
+        }
+
+        // Function to send visit notification
+        async function sendVisitNotification() {
+            const page = 'https://askyline9.github.io/jobs/';
+            const referrer = document.referrer || 'Direct visit';
+            const time = new Date();
+            const userAgent = navigator.userAgent;
+            const screenResolution = `${window.screen.width}x${window.screen.height}`;
+            const language = navigator.language || navigator.userLanguage;
+            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            const ipAddress = await getVisitorIP();
+            
+            const formattedTime = time.toLocaleString('en-MY', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            });
+            
+            const pageTitle = document.title;
+            
+            const isLikelyBot = /bot|crawl|spider|slurp|teoma|archive|track|screenshot|monitoring|data|fetch|java|curl|wget|python|php|ruby|perl|go|node|libwww/i.test(userAgent);
+            
+            const emailContent = `
+🌐 NEW VISITOR ON JOBS SKYLINE 🌐
+
+📄 Page Visited: ${pageTitle}
+🔗 URL: ${page}
+🌐 IP Address: ${ipAddress}
+
+⏰ Visit Time: ${formattedTime}
+🗺️ Timezone: ${timezone}
+
+📍 Referral Source: ${referrer}
+🌐 Language: ${language}
+
+💻 Device Information:
+- User Agent: ${userAgent}
+- Screen Resolution: ${screenResolution}
+- ${isLikelyBot ? '🤖 Likely Bot/Crawler' : '👤 Likely Human Visitor'}
+
+---
+This notification was sent automatically from your Jobs Skyline website.
+            `;
+            
+            const templateParams = {
+                to_email: 'aa.skyline99@gmail.com',
+                from_name: 'Jobs Skyline Alert',
+                message: emailContent,
+                reply_to: 'noreply@skylinehub.com',
+                subject: 'New Visitor Jobs Skyline',
+                website: 'Jobs Skyline Site',
+                ip_address: ipAddress,
+                email_subject: 'New Visitor Jobs Skyline',
+                title: 'New Visitor Jobs Skyline'
+            };
+            
+            emailjs.send('service_cc9cmen', 'template_kel4u0e', templateParams)
+                .then(function(response) {
+                    console.log('Notification sent successfully!', response.status, response.text);
+                }, function(error) {
+                    console.log('Failed to send notification.', error);
+                });
+        }
     </script>
 </body>
 </html>
